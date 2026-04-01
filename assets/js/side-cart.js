@@ -56,7 +56,7 @@ jQuery(function($) {
                 success: function(response) {
                     if (response && response.success && response.data) {
                         if (response.data.is_empty) {
-                            content = '<div class="empty-cart"><p>Tu carrito está vacío</p><a href="' + window.location.origin + '/tienda/" class="button">Ver productos</a></div>';
+                            content = '<div class="empty-cart"><p>Tu carrito está vacío</p><a href="' + window.location.origin + '/shop/" class="button">Ver productos</a></div>';
                         } else {
                             content = response.data.html;
                         }
@@ -79,7 +79,7 @@ jQuery(function($) {
         getCartFooter: function() {
             var self = this;
             var subtotal = '0,00 €';
-            var cartUrl = window.location.origin + '/carrito/';
+            var cartUrl = window.location.origin + '/cart/';
             var checkoutUrl = window.location.origin + '/checkout/';
             
             $.ajax({
