@@ -44,12 +44,10 @@ body.cart-open .cart-overlay {
 }
 
 /* ========================================
-   HEADER
+   HEADER (ZARA STYLE - MINIMALISTA)
    ======================================== */
 .side-cart-header {
-    padding: 20px;
-    font-weight: 600;
-    font-size: 18px;
+    padding: 20px 24px;
     border-bottom: 1px solid #eee;
     display: flex;
     justify-content: space-between;
@@ -57,11 +55,37 @@ body.cart-open .cart-overlay {
     background: #fff;
 }
 
+.side-cart-header .cart-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2f2a26;
+}
+
+.side-cart-header .cart-title svg {
+    width: 20px;
+    height: 20px;
+    stroke: #2f2a26;
+}
+
 .side-cart-header h3 {
     margin: 0;
     font-size: 18px;
     font-weight: 600;
     color: #2f2a26;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.side-cart-header h3::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%232f2a26' stroke-width='2'%3E%3Ccircle cx='9' cy='21' r='1'/%3E%3Ccircle cx='20' cy='21' r='1'/%3E%3Cpath d='M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6'/%3E%3C/svg%3E") no-repeat center;
 }
 
 .close-cart {
@@ -107,15 +131,17 @@ body.cart-open .cart-overlay {
 }
 
 /* ========================================
-   PRODUCTOS
+   PRODUCTOS (ZARA STYLE)
    ======================================== */
 .woocommerce-mini-cart-item {
     display: flex;
     gap: 14px;
-    margin-bottom: 20px;
     align-items: center;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #f5f5f5;
+    padding: 16px 0;
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
+    border-radius: 0;
+    margin-bottom: 0;
 }
 
 .woocommerce-mini-cart-item:last-child {
@@ -218,23 +244,23 @@ body.cart-open .cart-overlay {
     background: #fafafa;
 }
 
-/* Botón principal (checkout) */
+/* Botón principal (checkout) - ZARA STYLE */
 .woocommerce-mini-cart__buttons .checkout {
-    background: #6b7a46 !important;
+    background: #000 !important;
     color: #fff !important;
     padding: 14px !important;
     border-radius: 999px !important;
     text-align: center;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 14px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: background 0.3s ease !important;
+    letter-spacing: 1px;
+    transition: all 0.3s ease !important;
     border: none !important;
 }
 
 .woocommerce-mini-cart__buttons .checkout:hover {
-    background: #5a663c !important;
+    background: #333 !important;
 }
 
 /* Botón secundario (ver carrito) */
@@ -345,4 +371,40 @@ body.cart-open {
         width: 55px;
         height: 55px;
     }
+}
+
+/* ========================================
+   ANIMACIONES PRO
+   ======================================== */
+
+/* Animación de entrada del producto */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.woocommerce-mini-cart-item {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Animación de eliminación */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+.woocommerce-mini-cart-item.removing {
+    animation: fadeOut 0.3s ease-out forwards;
 }
