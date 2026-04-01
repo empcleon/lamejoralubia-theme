@@ -1,5 +1,5 @@
 /**
- * Side Cart - JavaScript (WooCommerce Native)
+ * Side Cart - JavaScript (WooCommerce Native + Floating Cart)
  * 
  * @package La_Mejor_Alubia
  */
@@ -33,9 +33,19 @@ jQuery(function($) {
         }
     });
 
-    // Abrir carrito al hacer click en icono flotante (si existe)
-    $(document).on('click', '.floating-cart-icon, .ast-icon-shopping-cart', function(e) {
+    // Abrir carrito al hacer click en icono flotante
+    $('.cart-trigger').on('click', function(e) {
         e.preventDefault();
         $('body').addClass('cart-open');
+    });
+
+    // Actualizar contador cuando WooCommerce fragments se refrescan
+    $(document).on('wc_fragment_refreshed', function(event, fragments) {
+        if (fragments && fragments['.widget_shopping_cart_content']) {
+            $('.widget_shopping_cart_content').replaceWith(fragments['.widget_shopping_cart_content']);
+        }
+        if (fragments && fragments['.floating-cart .cart-count']) {
+            $('.floating-cart .cart-count').replaceWith(fragments['.floating-cart .cart-count']);
+        }
     });
 });
