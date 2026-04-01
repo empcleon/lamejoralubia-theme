@@ -43,31 +43,66 @@ jQuery(function($) {
         },
 
         getCartContent: function() {
-            var $miniCart = $('.widget_shopping_cart_content');
-            if ($miniCart.length && $miniCart.find('.woocommerce-mini-cart__empty-message').length === 0) {
-                return $miniCart.html();
+            var self = this;
+            var content = '';
+            
+            $.ajax({
+                url: '/wp-admin/admin-ajax.php',
+                type: 'POST',
+                data: {
+                    action: 'get_cart_content_html'
+                },
+                async: false,
+                success: function(response) {
+                    if (response && response.success && response.data) {
+                        if (response.data.is_empty) {
+                            content = '<div class="empty-cart"><p>Tu carrito está vacío</p><a href="' + window.location.origin + '/tienda/" class="button">Ver productos</a></div>';
+                        } else {
+                            content = response.data.html;
+                        }
+                    }
+                }
+            });
+            
+            if (!content) {
+                var $miniCart = $('.widget_shopping_cart_content');
+                if ($miniCart.length && $miniCart.find('.woocommerce-mini-cart__empty-message').length === 0) {
+                    content = $miniCart.html();
+                } else {
+                    content = '<div class="empty-cart"><p>Tu carrito está vacío</p><a href="' + window.location.origin + '/tienda/" class="button">Ver productos</a></div>';
+                }
             }
-            return '<div class="empty-cart"><p>Tu carrito está vacío</p><a href="' + window.location.origin + '/tienda/" class="button">Ver productos</a></div>';
+            
+            return content;
         },
 
         getCartFooter: function() {
-            var $miniCart = $('.widget_shopping_cart_content');
+            var self = this;
             var subtotal = '0,00 €';
+            var cartUrl = window.location.origin + '/carrito/';
+            var checkoutUrl = window.location.origin + '/checkout/';
             
-            if ($miniCart.length) {
-                var $amount = $miniCart.find('.woocommerce-mini-cart__total .amount');
-                if ($amount.length) {
-                    subtotal = $amount.text();
+            $.ajax({
+                url: '/wp-admin/admin-ajax.php',
+                type: 'POST',
+                data: {
+                    action: 'get_cart_subtotal'
+                },
+                async: false,
+                success: function(response) {
+                    if (response && response.success && response.data && response.data.subtotal) {
+                        subtotal = response.data.subtotal;
+                    }
                 }
-            }
+            });
 
             return `
                 <div class="cart-subtotal">
                     <span>Subtotal:</span>
                     <span class="amount">${subtotal}</span>
                 </div>
-                <a href="cart/" class="wc-forward">Ver Carrito</a>
-                <a href="checkout/" class="wc-forward" style="margin-top: 10px; background: #228B22;">Finalizar Compra</a>
+                <a href="${cartUrl}" class="wc-forward">Ver Carrito</a>
+                <a href="${checkoutUrl}" class="wc-forward" style="margin-top: 10px; background: #228B22;">Finalizar Compra</a>
             `;
         },
 
