@@ -35,3 +35,18 @@ add_filter( 'woocommerce_add_to_cart_fragments', function( $fragments ) {
     
     return $fragments;
 });
+
+// AJAX endpoint para obtener cantidad del carrito
+add_action( 'wp_ajax_get_cart_count', 'get_cart_count_ajax' );
+add_action( 'wp_ajax_nopriv_get_cart_count', 'get_cart_count_ajax' );
+
+function get_cart_count_ajax() {
+    $count = WC()->cart->get_cart_contents_count();
+    wp_send_json( array( 'count' => $count ) );
+}
+
+// Incluir WooCommerce en el theme
+function la_mejor_alubia_woocommerce_support() {
+    add_theme_support( 'woocommerce' );
+}
+add_action( 'after_setup_theme', 'la_mejor_alubia_woocommerce_support' );

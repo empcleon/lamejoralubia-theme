@@ -192,7 +192,25 @@ jQuery(function($) {
         },
 
         updateInitialCount: function() {
-            this.updateCartCountFromDOM();
+            var self = this;
+            
+            $.ajax({
+                url: '/wp-admin/admin-ajax.php',
+                type: 'POST',
+                data: {
+                    action: 'get_cart_count'
+                },
+                success: function(response) {
+                    if (response && response.count !== undefined) {
+                        $('.floating-cart-icon .cart-count').text(response.count);
+                    } else {
+                        self.updateCartCountFromDOM();
+                    }
+                },
+                error: function() {
+                    self.updateCartCountFromDOM();
+                }
+            });
         }
     };
 
