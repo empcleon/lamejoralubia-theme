@@ -32,6 +32,10 @@ add_filter( 'woocommerce_add_to_cart_fragments', function( $fragments ) {
 // Incluir WooCommerce en el theme
 function la_mejor_alubia_woocommerce_support() {
     add_theme_support( 'woocommerce' );
+    
+    // Desactivar carrito de Astra header
+    remove_action( 'astra_header_cart', 'astra_header_cart_markup' );
+    remove_action( 'astra_header_cart', 'astra_mini_cart_markup', 20 );
 }
 add_action( 'after_setup_theme', 'la_mejor_alubia_woocommerce_support' );
 
