@@ -1,0 +1,22 @@
+/*
+Theme Name: la_mejor_rubia
+Theme URI: https://empc.es
+Template: astra
+Author: Empc
+Author URI: https://empc.es
+Description: Tema hijo para el tema Página Desarrollo astra
+Version: 1.0.0.1579606089
+Updated: 2020-01-21 11:28:09
+
+*/
+
+#ast-scroll-top {
+    background-color: #8bc34a;
+    font-size: 20px;
+    font-size: 1.25rem;
+    border-radius: 10px;
+    bottom: 105px;
+}
+
+
+

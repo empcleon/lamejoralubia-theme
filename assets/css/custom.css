@@ -1,0 +1,87 @@
+/**
+ * La Mejor Alubia - Custom Styles
+ * 
+ * Estilos personalizados para el tema hijo
+ * 
+ * @package La_Mejor_Alubia
+ */
+
+/* ========================================
+   VARIABLES DE MARCA - Boutique Premium
+   ======================================== */
+:root {
+    --color-tierra: #8B4513;
+    --color-crema: #FFF8DC;
+    --color-verde: #228B22;
+    --color-oro: #D4AF37;
+    --color-negro: #1a1a1a;
+    --color-blanco: #ffffff;
+    
+    --fontprincipal: 'Poppins', sans-serif;
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --transition-base: all 0.3s ease;
+}
+
+/* ========================================
+   ESTILOS GENERALES
+   ======================================== */
+body {
+    font-family: var(--fontprincipal);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--fontprincipal);
+    color: var(--color-tierra);
+}
+
+/* ========================================
+   WOOCOMMERCE
+   ======================================== */
+.woocommerce ul.products li.product .price {
+    color: var(--color-tierra);
+    font-weight: 600;
+}
+
+.woocommerce-message {
+    border-top-color: var(--color-verde);
+}
+
+.woocommerce-info {
+    border-top-color: var(--color-oro);
+}
+
+/* ========================================
+   BOTONES
+   ======================================== */
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit {
+    background-color: var(--color-tierra);
+    color: var(--color-blanco);
+    border-radius: 4px;
+    transition: var(--transition-base);
+}
+
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce input.button:hover {
+    background-color: var(--color-verde);
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+.site-header {
+    background-color: var(--color-blanco);
+    box-shadow: var(--shadow-card);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media only screen and (max-width: 768px) {
+    :root {
+        --font-size-base: 14px;
+    }
+}

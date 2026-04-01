@@ -1,0 +1,19 @@
+/*
+ Theme Name:     Empc-wp
+ Theme URI:      https://empc.es
+ Description:    Tema hijo para el tema Página Desarrollo oceanwp 
+ Author:         Empc
+ Author URI:     https://empc.es
+ Template:       oceanwp
+ Version:        1.0.0
+A partir de aquí puedes poner tus estilos de CSS personalizados ------------------------------------------------------- */
+
+/* Some General Settings */
+
+/***********Estilos aviso legal**********/
+body #gform_wrapper_2 .gform_body .gform_fields .gfield .ginput_container {border: 1px solid red}
+
+input#input_2_1_3 {
+    background: #fff;
+}
+
