@@ -125,12 +125,18 @@ jQuery(function($) {
                 }
             });
 
+            // ABRIR CARRITO AL AÑADIR PRODUCTO - sin condiciones
             $('body').on('click', '.add_to_cart_button', function(e) {
-                if (!$(this).hasClass('ajax_add_to_cart')) return;
                 setTimeout(function() {
                     self.openCart();
                     self.refreshCartData();
-                }, 800);
+                }, 500);
+            });
+
+            // WooCommerce AJAX add to cart
+            $(document).on('added_to_cart', function(event, fragments, cart_hash, $button) {
+                self.openCart();
+                self.refreshCartData();
             });
         },
 
@@ -147,12 +153,7 @@ jQuery(function($) {
         refreshOnAjax: function() {
             var self = this;
 
-            $(document.body).on('added_to_cart', function(event, fragments, cart_hash, $button) {
-                setTimeout(function() {
-                    self.refreshCartData();
-                }, 500);
-            });
-
+            // WooCommerce fragments refresh
             $(document).on('wc_fragment_refreshed wc_cart_updated', function() {
                 self.refreshCartData();
             });
